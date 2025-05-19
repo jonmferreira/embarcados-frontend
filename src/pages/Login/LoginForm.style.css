@@ -1,0 +1,213 @@
+.login-page {
+  /* background: url("/fundo.svg") no-repeat center center fixed; */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: #1D3098;
+  color: var(--text-color);
+}
+
+.custom-blue {
+  color: #002aff;
+}
+
+.divider {
+  margin-top: 38px;
+}
+
+.field {
+  display: flex;
+  position: relative;
+  width: 100%;
+  flex-direction: column;
+  padding-left: 10%;
+  padding-right: 10%;
+  justify-content: center;
+  align-items: center;
+}
+
+.field label {
+  font-weight: bold;
+}
+
+.field input {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  width: 100% !important;
+  max-width: 545px !important;
+}
+
+.field input.p-invalid {
+  border-color: #a31415;
+  background-color: #ffa9a9;
+  border-width: 1px !important;
+}
+
+.field input:focus {
+  border-color: #002aff;
+  outline: none;
+}
+
+.field input:focus + label {
+  color: #002aff;
+}
+
+.input-icon .pi {
+  font-size: 1.2rem;
+}
+
+.input-size {
+  flex: 1;
+  align-items: center;
+  width: 540px !important;
+  height: 62px !important;
+  min-width: 300px;
+}
+
+.p-password {
+  width: 300px;
+}
+
+.input-wrapper {
+  flex: 1;
+}
+
+.user-spacing {
+  margin-right: 10px;
+}
+
+.custom-button {
+  width: 120px !important;
+  height: 65px !important;
+  font-size: 24px !important;
+  border-radius: 4px;
+  border: 1px solid var(--Light-Primary-Actions-Primary-base, #4B2CCD);
+  background: var(--Light-Primary-Actions-Primary-base, #4B2CCD);
+  color: #fff !important;
+  box-shadow: 
+    0px 4px 8px -2px rgba(16, 24, 40, 0.10),
+    1px 2px 4px -2px rgba(16, 24, 40, 0.40);
+  transition: background-color 0.3s ease;
+  padding: 0 !important;
+}
+
+.custom-button:hover {
+  background-color: #3e1e9a;
+}
+
+.custom-button:disabled {
+  border-radius: 4px;
+  border: 1px solid var(--Light-Primary-Actions-Primary-xlight, #A492F4);
+  background: var(--Light-Primary-Actions-Primary-xlight, #A492F4);
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.10), 1px 2px 4px -2px rgba(16, 24, 40, 0.40);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.custom-button.loading .button-label {
+  opacity: 0;
+  transition: none;
+}
+
+
+.custom-button .p-button-loading-icon {
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.custom-link {
+  text-decoration: none;
+  color: #002aff;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.custom-link:hover {
+  color: lighten(var(--primary-color), 10%);
+}
+
+.separator {
+  width: 2px;
+  height: 20px;
+  background-color: #ccc;
+}
+
+.user-text-login {
+  padding-left: 1.2rem !important;
+}
+
+.img-user {
+  margin-bottom: 29px;
+}
+
+.login-card {
+  width: 775px !important;
+  height: 675px !important;
+  border-radius: 40px !important;
+  border: 1px solid rgba(153, 153, 153, 0.50);
+  background: linear-gradient(129deg, rgba(255, 255, 255, 0.10) 11.26%, rgba(255, 255, 255, 0.40) 87.36%);
+  box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.20);
+  backdrop-filter: blur(20px);
+  margin-bottom: 2.5%;
+}
+
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.left-aligned {
+  display: block;
+  margin-top: 4px;
+  text-align: left;
+  width: 100%;
+}
+
+.checkbox-color {
+  color: #4b2ccd;
+  margin-top: 0;
+  margin-left: 10%;
+}
+
+.label-color {
+  color: #ffffff;
+  font-weight: 600;
+  margin-top: 0;
+  padding-left: 5px;
+}
+
+.zilia-logo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.remember-me-container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.error-container {
+  margin-left: 15%;
+  margin-bottom: 1%;
+}
+
+.bg-green {
+  background-color: #29c76f !important;
+  border-color: #29c76f !important;
+  color: black !important;
+  width: 120px;
+  height: 65px;
+}
+
+.custom-button .pi.pi-check {
+  font-size: 24px;
+}

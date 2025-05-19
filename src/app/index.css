@@ -1,0 +1,325 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #2ccd7d;
+
+  --primary-color: #4b2ccd;
+  --primary-color-text: rgba(0, 0, 0, 0.87);
+  --background-color: #f8f8f8;
+  --text-color: rgba(0, 0, 0, 0.87);
+  --border-radius: 8px;
+}
+#root {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  background-color: #e1eaff !important;
+  color: #0c1013 !important;
+  font-weight: 500 !important;
+  border-bottom: none !important;
+}
+
+.p-datatable-table {
+  border-collapse: separate !important;
+  border-spacing: 1.2px 4px !important;
+}
+
+th.custom-table {
+  background-color: #e1eaff !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  border-bottom: none !important;
+  padding: 16px !important;
+}
+.p-datatable .p-datatable-wrapper > table {
+  border-collapse: separate !important;
+  border-spacing: 1.2px 4px !important;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  background-color: #ffffff !important;
+  padding: 0.75rem 1rem !important;
+  border: none !important;
+}
+
+.p-datatable .p-datatable-tbody > tr.p-row-odd > td {
+  background-color: #f9f9f9 !important;
+}
+
+.p-datatable .p-datatable-wrapper {
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+}
+/* Corrige o botão de ícone do calendário(estava colado antes) */
+.p-calendar .p-datepicker-trigger {
+  border-radius: 0px 4px 4px 0px !important;
+  border: none !important;
+  margin-left: -1px;
+  padding: 0 0.75rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  font-weight: 500;
+  text-decoration: inherit;
+  color: var(--primary-color);
+}
+a:hover {
+  color: lighten(var(--primary-color), 10%);
+}
+
+body {
+  margin: 0;
+
+  display: flex;
+  place-items: center;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; /*TROCAR A FONTE QUANDO TIVER DEFINIDA*/
+}
+
+body.login-page {
+  /* TODO adicionar uma img de fundo */
+  background: url('/fundo.svg') no-repeat center center fixed;
+  background-size: cover;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+body.register-background {
+  /* TODO adicionar uma img de fundo */
+  background: url('/fundo.svg') no-repeat center center fixed;
+  background-size: cover;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary-color-text);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 0px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: rgba(0, 0, 0, 0.87);
+
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #f5f5f5;
+    /* background-image: url('/img.png'); Caminho relativo */
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+  }
+  a:hover {
+    color: lighten(var(--primary-color), 10%);
+  }
+  button {
+    background-color: var(--primary-color);
+    color: #ffffff;
+  }
+}
+
+/* Container do Stepper */
+.stepper-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 1rem;
+  opacity: 0.9;
+}
+
+/* Configuração do Stepper Mini */
+.stepper {
+  background-color: transparent;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.p-steps .p-steps-item {
+  width: 125px;
+  white-space: break-spaces;
+  word-wrap: break-word;
+}
+
+.p-steps .p-steps-item .p-menuitem-link {
+  background-color: transparent !important;
+}
+
+.p-steps .p-steps-item .p-menuitem-link .p-steps-title {
+  font-size: 12px !important;
+  white-space: normal;
+  text-align: center;
+  background-color: transparent !important;
+  padding: 0;
+  margin: 0;
+}
+
+.p-steps .p-steps-item.p-highlight .p-steps-number {
+  background-color: #8faff6 !important;
+  border: 2px solid #5486f3;
+}
+
+.p-steps .p-steps-item .p-steps-number {
+  border: 2px solid #5486f3;
+  color: #301a8e !important;
+}
+
+.p-button-label {
+  color: rgb(255, 255, 255);
+}
+
+.p-button-icon {
+  color: #ffffff;
+}
+
+.p-button-primary {
+  background-color: #4b2ccd !important;
+  color: white !important;
+  border: none;
+}
+
+.p-button-primary:disabled {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed;
+}
+
+/* Botão "Salvar Parcialmente" (Verde) */
+.p-button-success {
+  background-color: #28a745 !important;
+  color: white !important;
+  border: none;
+}
+
+.p-button-success:hover {
+  background-color: #218838 !important;
+}
+
+/* Botão "Cancelar" (Vermelho) */
+.p-button-outlined {
+  border-color: #5486f3 !important;
+  /* color: #dc3545 !important; */
+}
+
+.p-button:active {
+  border-color: #5486f3 !important;
+}
+
+.p-button-outlined:hover {
+  /* background-color: #dc3545 !important; */
+  color: white !important;
+}
+
+.p-button.p-button-text {
+  color: #696e79 !important;
+  background-color: transparent !important;
+}
+.p-button {
+  color: #ffffff;
+
+  border: transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 3px;
+}
+
+.p-button .p-button-icon.pi-angle-right,
+.p-button .p-button-icon.pi-angle-down {
+  color: #696e79 !important;
+}
+.p-dialog .p-dialog-header-close {
+  border-radius: 4px !important; /* ou 0 se quiser quadrado total */
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+}
+.p-dialog .p-dialog-header-close:hover {
+  background-color: #4b2ccd;
+  color: #ffffff;
+}
+
+.p-overlaypanel .p-overlaypanel-close {
+  background-color: transparent !important;
+  border-radius: 4px !important;
+  color: #000000 !important;
+  width: 2rem;
+  height: 2rem;
+}
+
+.p-overlaypanel .p-overlaypanel-close .p-overlaypanel-close-icon {
+  color: #000000 !important;
+  fill: currentColor !important;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em var(--primary-color));
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em var(--primary-color));
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  background: '#ffffff';
+  border-radius: var(--border-radius);
+}
+
+.read-the-docs {
+  color: var(--text-color);
+}
+
+tr.p-row-odd {
+  background: #f1f4f5;
+  color: #180303;
+}
