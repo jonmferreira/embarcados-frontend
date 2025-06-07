@@ -10,34 +10,20 @@ import { Button } from 'primereact/button';
 import { FloatLabel } from 'primereact/floatlabel';
 import { Calendar } from 'primereact/calendar';
 import { Nullable } from 'primereact/ts-helpers';
+import { EmbarcadosAPI } from './integrations';
+import { useSensorStore } from './hooks';
 const statusColors = ['#779ECC', '#FFB347', '#7ABD7E', '#FF6961'];
 const reasonColors = ['#FF6961', '#FFB347', '#779ECC', '#7ABD7E'];
 
 export const Home = () => {
   const [loading, setLoading] = useState(false);
 
-  const [dataChart, setDataChart] = useState({
-    status: [
-      { name: 'PENDING', value: 10 },
-      { name: 'RECEIVED', value: 5 },
-      { name: 'IN_TEST', value: 7 },
-      { name: 'APPROVED', value: 8 },
-      { name: 'REJECTED', value: 2 },
-      { name: 'COMPLETED', value: 30 },
-    ],
-    profile: [
-      { name: 'DEFECT', value: 30 },
-      { name: 'DISSATISFACTION', value: 1 },
-      { name: 'WRONG_ITEM', value: 1 },
-      { name: 'DAMAGED', value: 10 },
-      { name: 'WARRANTY_CLAIM', value: 5 },
-      { name: 'OTHER', value: 3 },
-    ],
-  });
+  const { setList, humidityList, temperatureList, setLogs } = useSensorStore();
 
   const [normalizandoPH, setNormalizarPH] = useState(false);
   const [normalizandoUmidade, setNormalizarUmidade] = useState(false);
   const [dates, setDates] = useState(null);
+  const { startDate, endDate, setDateRange } = useSensorStore();
 
   const onClickNormalizarPH = () => {
     setNormalizarPH(true);
@@ -46,26 +32,27 @@ export const Home = () => {
     setNormalizarUmidade(true);
   };
 
-  const sensorData = [
-    { timestamp: '2025-06-01T08:00', value: 20 },
-    { timestamp: '2025-06-01T12:00', value: 22 },
-    { timestamp: '2025-06-01T16:00', value: 24 },
-    { timestamp: '2025-06-01T20:00', value: 21 },
-  ];
+  const fetchData = async (startDate?: Date, endDate?: Date) => {
+    try {
+      setLoading(true);
+
+      const [data, logs] = await Promise.all([
+        EmbarcadosAPI.getItens(startDate, endDate),
+        EmbarcadosAPI.getLog(startDate, endDate),
+      ]);
+
+      setList(data);
+      setLogs(logs);
+    } catch (error) {
+      console.error('Erro ao carregar os dados do usuário');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getDashboardData();
-        setDataChart(data);
-      } catch (error) {
-        console.error('Erro ao carregar os dados do usuário');
-      } finally {
-        setLoading(false);
-      }
-    };
-    // fetchData();
-  }, []);
+    fetchData(startDate, endDate);
+  }, [startDate, endDate]);
 
   if (loading) {
     return (
@@ -85,7 +72,7 @@ export const Home = () => {
             <SingleAreaChart
               title="Leitura do Sensor de Umidade"
               subtitle="Valores ao longo do dia"
-              data={sensorData}
+              data={humidityList}
               xKey="timestamp"
               yKey="value"
               color="#8884d8"
@@ -97,7 +84,7 @@ export const Home = () => {
             <SingleAreaChart
               title="Leitura do Sensor de Temperatura"
               subtitle="Valores ao longo do dia"
-              data={sensorData}
+              data={temperatureList}
               xKey="timestamp"
               yKey="value"
               color="#82ca9d"
@@ -131,8 +118,11 @@ export const Home = () => {
                 <Calendar
                   value={dates}
                   onChange={(e) => {
+                    console.log(e.value);
                     //@ts-ignore
                     setDates(e.value);
+                    //@ts-ignore
+                    setDateRange(e.value);
                   }}
                   selectionMode="range"
                   readOnlyInput

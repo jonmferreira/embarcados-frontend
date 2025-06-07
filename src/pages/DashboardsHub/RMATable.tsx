@@ -94,10 +94,6 @@ export const RmaTable: React.FC = () => {
     </div>
   );
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   if (loading) {
     return <LoadingSpinner />;
   }
