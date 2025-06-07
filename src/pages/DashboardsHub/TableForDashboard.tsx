@@ -56,14 +56,18 @@ export const TableForDashboard = () => {
     return <LoadingSpinner />;
   }
   return (
-    <div>
-      <DataTable value={rmaData.data} paginator={false} loading={loadingTable} dataKey="id">
-        <Column field="timestamp" header="Data de Coleta" style={{ width: '30%' }} />
-        <Column field="ph" header="pH" style={{ width: '10%' }} />
-        <Column field="humidity" header="Umidade (%)" style={{ width: '10%' }} />
-        <Column header="Status pH" body={renderPhStatus} style={{ width: '15%' }} />
-        <Column header="Status Umidade" body={renderHumidityStatus} style={{ width: '15%' }} />
-      </DataTable>
-    </div>
+    <DataTable
+      size="small"
+      value={rmaData.data}
+      paginator={false}
+      loading={loadingTable}
+      dataKey="id"
+    >
+      <Column field="timestamp" header="Data de Coleta" style={{ width: '30%' }} />
+      <Column field="ph" header="pH" style={{ width: '10%' }} />
+      <Column field="humidity" header="Umidade (%)" style={{ width: '10%' }} />
+      <Column header="Status pH" body={renderPhStatus} style={{ width: '15%' }} />
+      <Column header="Status Umidade" body={renderHumidityStatus} style={{ width: '15%' }} />
+    </DataTable>
   );
 };
