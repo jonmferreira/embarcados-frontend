@@ -1,18 +1,11 @@
-import { Card } from 'primereact/card';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
-import { useEffect, useState } from 'react';
 import { LoadingSpinner } from '../../component/LoadingSpinner';
 import { Tag } from 'primereact/tag';
-import { mockRmaData } from './RMATable';
 import { useSensorStore } from '../Home/hooks';
 
 export const TableForDashboard = () => {
-  const [rmaData, setRmaData] = useState(mockRmaData);
-  const [loading, setLoading] = useState(false);
-  const [loadingTable, setLoadingTable] = useState(false);
-
-  const { list } = useSensorStore();
+  const { list, loading } = useSensorStore();
 
   const renderTemperatureStatus = (rowData: any) => {
     const value = rowData.temperatura;
@@ -57,7 +50,7 @@ export const TableForDashboard = () => {
       paginator={true}
       rows={6}
       totalRecords={list.length}
-      loading={loadingTable}
+      loading={loading}
       dataKey="id"
     >
       <Column field="timestamp" header="Data de Coleta" style={{ width: '30%' }} />

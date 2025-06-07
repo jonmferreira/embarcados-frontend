@@ -16,9 +16,7 @@ const statusColors = ['#779ECC', '#FFB347', '#7ABD7E', '#FF6961'];
 const reasonColors = ['#FF6961', '#FFB347', '#779ECC', '#7ABD7E'];
 
 export const Home = () => {
-  const [loading, setLoading] = useState(false);
-
-  const { setList, humidityList, temperatureList, setLogs } = useSensorStore();
+  const { setList, humidityList, temperatureList, setLogs, setLoading } = useSensorStore();
 
   const [normalizandoPH, setNormalizarPH] = useState(false);
   const [normalizandoUmidade, setNormalizarUmidade] = useState(false);
@@ -53,16 +51,6 @@ export const Home = () => {
   useEffect(() => {
     fetchData(startDate, endDate);
   }, [startDate, endDate]);
-
-  if (loading) {
-    return (
-      <div className={styles.pageContentWrapper}>
-        <div className={styles.irmaHeader}>
-          <LoadingSpinner />
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className={styles.pageContentWrapper}>

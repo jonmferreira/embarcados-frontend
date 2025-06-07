@@ -40,11 +40,15 @@ interface SensorStore {
   startDate?: Date;
   endDate?: Date;
   setDateRange: (dates: Date[]) => void;
+  loading: boolean;
+  setLoading: (state: boolean) => void;
 }
 
 export const useSensorStore = create<SensorStore>((set) => ({
   startDate: undefined,
   endDate: undefined,
+  loading: false,
+  setLoading: (state) => set({ loading: state }),
   setDateRange: (dates) => {
     set({ startDate: dates[0], endDate: dates[1] });
   },
