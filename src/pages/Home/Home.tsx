@@ -1,18 +1,16 @@
-import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
-import { DashboardPieChart } from '../../component';
+import { DashboardPieChart, SingleAreaChart } from '../../component';
 import { TableForDashboard } from '../DashboardsHub';
 import { useState, useEffect } from 'react';
 import { LoadingSpinner } from '../../component/LoadingSpinner';
 import { getDashboardData } from '../../service';
-import { useStore } from '@/store';
-import styles from '@/app/irma.module.css';
+
+import styles from '../../app/irma.module.css';
 const statusColors = ['#779ECC', '#FFB347', '#7ABD7E', '#FF6961'];
 const reasonColors = ['#FF6961', '#FFB347', '#779ECC', '#7ABD7E'];
 
 export const Home = () => {
-  const [loading, setLoading] = useState(true);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [dataChart, setDataChart] = useState({
     status: [
@@ -33,7 +31,13 @@ export const Home = () => {
     ],
   });
 
-  const { userRemote } = useStore();
+  const sensorData = [
+    { timestamp: '2025-06-01T08:00', value: 20 },
+    { timestamp: '2025-06-01T12:00', value: 22 },
+    { timestamp: '2025-06-01T16:00', value: 24 },
+    { timestamp: '2025-06-01T20:00', value: 21 },
+  ];
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,7 +49,7 @@ export const Home = () => {
         setLoading(false);
       }
     };
-    fetchData();
+    // fetchData();
   }, []);
 
   if (loading) {
@@ -61,19 +65,27 @@ export const Home = () => {
   return (
     <div className={styles.pageContentWrapper}>
       <div className={styles.irmaContent}>
-        <div className="flex flex-wrap gap-4 justify-content-between">
-          <Card className="chart-card flex-1 min-w-20rem max-w-30rem shadow-none">
-            <DashboardPieChart
-              data={dataChart.status}
-              colors={statusColors}
-              title="Distribuição por Status"
+        <div className="flex flex-wrap gap-4 justify-content-between mb-5">
+          <Card className="chart-card shadow-none m-0 p-0">
+            <SingleAreaChart
+              title="Leitura do Sensor de Umidade"
+              subtitle="Valores ao longo do dia"
+              data={sensorData}
+              xKey="timestamp"
+              yKey="value"
+              color="#8884d8"
+              tooltipTitle="Umidade"
             />
           </Card>
-          <Card className="chart-card flex-1 min-w-20rem max-w-30rem shadow-none">
-            <DashboardPieChart
-              data={dataChart.profile}
-              colors={reasonColors}
-              title="Distribuição por Razão"
+          <Card className="chart-card shadow-none m-0 p-0">
+            <SingleAreaChart
+              title="Leitura do Sensor de PH"
+              subtitle="Valores ao longo do dia"
+              data={sensorData}
+              xKey="timestamp"
+              yKey="value"
+              color="#82ca9d"
+              tooltipTitle="Umidade"
             />
           </Card>
         </div>

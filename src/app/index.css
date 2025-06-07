@@ -16,12 +16,14 @@
   --background-color: #f8f8f8;
   --text-color: rgba(0, 0, 0, 0.87);
   --border-radius: 8px;
+  background: #00031a;
 }
 #root {
   width: 100%;
   margin: 0 auto;
   padding: 0;
   text-align: center;
+   background: #00031a;
 }
 
 .p-datatable .p-datatable-thead > tr > th {
@@ -52,10 +54,13 @@ th.custom-table {
   background-color: #ffffff !important;
   padding: 0.75rem 1rem !important;
   border: none !important;
+  background-color: #32347e !important;
+  color: #E0E0E0;
 }
 
 .p-datatable .p-datatable-tbody > tr.p-row-odd > td {
-  background-color: #f9f9f9 !important;
+  background-color: #32357ea4 !important;
+  color: #E0E0E0 ;
 }
 
 .p-datatable .p-datatable-wrapper {
