@@ -6,7 +6,15 @@ export const LogsTable = () => {
   const { logs, loading } = useSensorStore();
 
   return (
-    <DataTable paginator rows={6} size="small" value={logs} dataKey="id" loading={loading}>
+    <DataTable
+      paginator
+      rows={6}
+      size="small"
+      value={logs}
+      dataKey="id"
+      loading={loading}
+      emptyMessage="Nenhum registro no período selecionado."
+    >
       <Column field="timestamp" header="Data de Coleta" style={{ width: '27%' }} />
       <Column field="log" header="Log" style={{ width: '50%' }} />
       <Column field="type" header="Tipo" style={{ width: '23%' }} />

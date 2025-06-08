@@ -53,6 +53,7 @@ export const TableForDashboard = () => {
       rows={6}
       totalRecords={list.length}
       loading={loading}
+      emptyMessage="Nenhum registro no período selecionado."
       dataKey="id"
     >
       <Column field="timestamp" header="Data de Coleta" style={{ width: '26%' }} />
