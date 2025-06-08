@@ -10,6 +10,7 @@ import { EmbarcadosAPI } from './integrations';
 import { useSensorStore } from './hooks';
 
 import '../DashboardsHub/Dashboard.style.css';
+import { toast } from 'react-toastify';
 
 export const Home = () => {
   const { setList, humidityList, temperatureList, setLogs, setLoading } = useSensorStore();
@@ -18,13 +19,6 @@ export const Home = () => {
   const [normalizandoUmidade, setNormalizarUmidade] = useState(false);
   const [dates, setDates] = useState(null);
   const { startDate, endDate, setDateRange } = useSensorStore();
-
-  const onClickNormalizarPH = () => {
-    setNormalizarPH(true);
-  };
-  const onClickNormalizarUmidade = () => {
-    setNormalizarUmidade(true);
-  };
 
   const fetchData = async (startDate?: Date, endDate?: Date) => {
     try {
@@ -44,10 +38,43 @@ export const Home = () => {
     }
   };
 
+  const onClickNormalizarPH = () => {
+    setNormalizarPH(true);
+    EmbarcadosAPI.postMQTT('cool down')
+      .then(() => {
+        fetchData();
+        toast.success('Comando enviado via MQTT com sucesso!');
+        toast.info('Aguarde normalização de Temperatura');
+      })
+      .catch((e) => {
+        toast.error('Erro ao enviar via MQTT com sucesso!');
+        setNormalizarPH(false);
+      });
+  };
+  const onClickNormalizarUmidade = () => {
+    setNormalizarUmidade(true);
+    EmbarcadosAPI.postMQTT('water')
+      .then(() => {
+        toast.success('Comando enviado via MQTT com sucesso!');
+        toast.info('Aguarde normalização de Umidade');
+      })
+      .catch((e) => {
+        toast.error('Erro ao enviar via MQTT com sucesso!');
+        setNormalizarUmidade(false);
+      });
+    toast.success('Comando enviado via MQTT com sucesso!');
+    toast.info('Aguarde normalização de Temperatura');
+  };
+
   useEffect(() => {
     fetchData(startDate, endDate);
-  }, [startDate, endDate]);
 
+    const interval = setInterval(() => {
+      fetchData(startDate, endDate);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [startDate, endDate]);
   return (
     <div className={styles.pageContentWrapper}>
       <div className={styles.irmaContent}>
