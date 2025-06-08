@@ -36,8 +36,8 @@ export const SingleAreaChart: React.FC<ISingleAreaChartProps> = ({
 
   return (
     <div style={{ width: 600, height: 200 }}>
-      <h2 style={{ margin: 0, padding: 0 }}>{title}</h2>
-      {subtitle && <p style={{ marginTop: 0, color: '#666' }}>{subtitle}</p>}
+      <h3 style={{ margin: 0, padding: 0 }}>{title}</h3>
+      {subtitle && <p style={{ margin: 0, color: '#666' }}>{subtitle}</p>}
 
       {loading ? (
         <ProgressSpinner

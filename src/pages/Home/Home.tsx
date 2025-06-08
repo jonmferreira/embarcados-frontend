@@ -1,19 +1,15 @@
 import { Card } from 'primereact/card';
-import { DashboardPieChart, SingleAreaChart } from '../../component';
+import { SingleAreaChart } from '../../component';
 import { TableForDashboard, LogsTable } from '../DashboardsHub';
 import { useState, useEffect } from 'react';
-import { LoadingSpinner } from '../../component/LoadingSpinner';
-import { getDashboardData } from '../../service';
 
 import styles from '../../app/irma.module.css';
 import { Button } from 'primereact/button';
-import { FloatLabel } from 'primereact/floatlabel';
 import { Calendar } from 'primereact/calendar';
-import { Nullable } from 'primereact/ts-helpers';
 import { EmbarcadosAPI } from './integrations';
 import { useSensorStore } from './hooks';
-const statusColors = ['#779ECC', '#FFB347', '#7ABD7E', '#FF6961'];
-const reasonColors = ['#FF6961', '#FFB347', '#779ECC', '#7ABD7E'];
+
+import '../DashboardsHub/Dashboard.style.css';
 
 export const Home = () => {
   const { setList, humidityList, temperatureList, setLogs, setLoading } = useSensorStore();
@@ -56,7 +52,7 @@ export const Home = () => {
     <div className={styles.pageContentWrapper}>
       <div className={styles.irmaContent}>
         <div className="flex flex-wrap gap-4 justify-content-between mb-1">
-          <Card className="chart-card shadow-none m-0 p-0">
+          <Card className="chart-card shadow-none m-0 p-0 border-noround">
             <SingleAreaChart
               title="Leitura do Sensor de Umidade"
               subtitle="Valores ao longo do dia"
@@ -68,7 +64,7 @@ export const Home = () => {
             />
           </Card>
 
-          <Card className="chart-card shadow-none m-0 p-0">
+          <Card className="chart-card shadow-none m-0 p-0 border-noround">
             <SingleAreaChart
               title="Leitura do Sensor de Temperatura"
               subtitle="Valores ao longo do dia"
@@ -79,7 +75,7 @@ export const Home = () => {
               tooltipTitle="Umidade"
             />
           </Card>
-          <Card className="chart-card shadow-none m-0 p-0 w-3">
+          <Card className="chart-card shadow-none m-0 p-0 w-3 border-noround">
             <h2 style={{ margin: 0, padding: 0 }}>Ações</h2>
             <div className="flex flex-column gap-2 ">
               <Button
@@ -123,12 +119,12 @@ export const Home = () => {
             </div>
           </Card>
         </div>
-        <div className="flex m-0 p-0 justify-content-between">
-          <div className="col-5  m-0 p-0 ">
+        <div className="flex m-0 p-0 justify-content-between gap-4">
+          <div className="w-full  m-0 p-0 ">
             <h3 style={{ margin: 0, padding: 0, color: 'white' }}>Tabela 1: Dados de coleta</h3>
             <TableForDashboard />
           </div>
-          <div className="col-5  m-0 p-0 ">
+          <div className="w-full   m-0 p-0 ">
             <h3 style={{ margin: 0, padding: 0, color: 'white' }}>Tabela 2: Logs no servidor</h3>
             <LogsTable />
           </div>
